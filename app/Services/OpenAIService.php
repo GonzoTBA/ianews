@@ -11,7 +11,7 @@ class OpenAIService {
 
     public function __construct() {
         $this->client = new Client([
-            'base_uri' => 'https://api.openai.com/v1/',
+            'base_uri' => 'https://api.openai.com/v1/chat/',
         ]);
         $this->apiKey = env('OPENAI_API_KEY');
         $this->organizationId = env('OPENAI_ORG_ID');
@@ -35,6 +35,7 @@ class OpenAIService {
             return $data['choices'][0]['text'] ?? 'No summary available.';
 
         } catch (\Exception $e) {
+            dd($e->getMessage());
             return 'Error summarizing article: ' . $e->getMessage();
         }
     }

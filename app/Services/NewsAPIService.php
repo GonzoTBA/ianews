@@ -12,7 +12,7 @@ class NewsAPIService {
         $this->client = new Client([
             'base_uri' => 'https://newsapi.org/v2/',
         ]);
-        $this->apiKey = '4e11542d076d40bba9fa0ab8990b0a16';
+        $this->apiKey = env('NEWSAPI_KEY');
     }
 
     public function fetchTopHeadlines($query) {
