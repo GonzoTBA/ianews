@@ -26,13 +26,17 @@ class OpenAIService {
                 ],
                 'json' => [
                     'model' => 'gpt-3.5-turbo',
-                    'prompt' => "Summarize the following article: " . $articleUrl,
-                    'max_tokens' => 100,
+                    // 'prompt' => "Summarize the following article: " . $articleUrl,
+                    'messages' => [
+                        ['role' => "user",
+                        'content' => "Summarize, in spanish and in 100 words, the following article: " . $articleUrl]
+                    ],
+                    'max_tokens' => 150,
                 ],
             ]);
 
             $data = json_decode($response->getBody()->getContents(), true);
-            return $data['choices'][0]['text'] ?? 'No summary available.';
+            return $data['choices'][0]['message']['content'] ?? 'No summary available.';
 
         } catch (\Exception $e) {
             dd($e->getMessage());

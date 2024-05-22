@@ -22,7 +22,7 @@ class NewsAPIService {
                     'q' => $query,
                     'apiKey' => $this->apiKey,
                     'language' => 'en',
-                    'pageSize' => 1,
+                    'pageSize' => 3,
                     'sortBy' => 'publishedAt',
                 ]
             ]);
